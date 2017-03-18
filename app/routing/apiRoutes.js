@@ -5,34 +5,25 @@
 // Routes
 // =============================================================
 
+var unfriends = require('../data/friends.js');
 
 
-// Search for Specific Character (or all characters) - provides JSON
-app.get("/api/friends?", function(req, res) {
-    var chosen = req.params.characters;
+module.exports = function(app) {
 
-    if (chosen) {
-        console.log(chosen);
+    // return JSON of all unfriends
+    app.get("/api/friends", function(req, res) {
+        return res.json(unfriends);
+    });
 
-        for (var i = 0; i < characters.length; i++) {
-            if (chosen === characters[i].routeName) {
-                return res.json(characters[i]);
-            }
-        }
+    // Create New Characters - takes in JSON input
+    // app.post("/api/new", function(req, res) {
+    //     var newcharacter = req.body;
+    //     newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
-        return res.json(false);
-    }
-    return res.json(characters);
-});
+    //     console.log(newcharacter);
 
-// Create New Characters - takes in JSON input
-app.post("/api/new", function(req, res) {
-    var newcharacter = req.body;
-    newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+    //     characters.push(newcharacter);
 
-    console.log(newcharacter);
-
-    characters.push(newcharacter);
-
-    res.json(newcharacter);
-});
+    //     res.json(newcharacter);
+    // });
+}

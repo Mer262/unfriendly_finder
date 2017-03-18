@@ -154,8 +154,7 @@
         <br>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
- Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
 
         <hr>
         <footer class="footer">
@@ -180,24 +179,25 @@
             </div>
         </div>
     </div>
-</body>
 
-<script type="text/javascript">
-    $('#submit').on("click", function() {
-        event.preventDefault();
-        var newUnfriend = {
-            name: $('#name').val().trim(),
-            photo: $('#photo').val().trim(),
-            scores: [$('#q1').val().trim(), $('#q2').val().trim(), $('#q3').val().trim(), $('#q4').val().trim(), $('#q5').val().trim(), $('#q6').val().trim(), $('#q7').val().trim(), $('#q8').val().trim(), $('#q9').val().trim(), $('#q10').val().trim()]
-        }
-        var currentURL = window.location.origin;
-        $.post(currentURL + '/api/friends', newUnfriend, function(data) {
-            $("#matchName").text(data.name);
-            $("#matchImg").attr("src", data.photo);
-            $("#matchModal").modal("show");
+
+    <script type="text/javascript">
+        $('#submit').on("click", function() {
+            event.preventDefault();
+            var newUnfriend = {
+                    name: $('#name').val().trim(),
+                    photo: $('#photo').val().trim(),
+                    scores: [$('#q1').val().trim(), $('#q2').val().trim(), $('#q3').val().trim(), $('#q4').val().trim(), $('#q5').val().trim(), $('#q6').val().trim(), $('#q7').val().trim(), $('#q8').val().trim(), $('#q9').val().trim(), $('#q10').val().trim()]
+                }
+                // var currentURL = window.location.origin;
+            $.post("/api/friends", newUnfriend, function(data) {
+                $("#matchName").text(data.name);
+                $("#matchImg").attr("src", data.photo);
+                $("#matchModal").modal("show");
+            });
+            return false;
         });
-        return false;
-    });
-</script>
+    </script>
+</body>
 
 </html>
