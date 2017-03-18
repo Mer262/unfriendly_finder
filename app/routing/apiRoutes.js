@@ -15,15 +15,14 @@ module.exports = function(app) {
         return res.json(unfriends);
     });
 
-    // Create New Characters - takes in JSON input
-    // app.post("/api/new", function(req, res) {
-    //     var newcharacter = req.body;
-    //     newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
-    //     console.log(newcharacter);
+    app.post("/api/friends", function(req, res) {
+        var newUnfriend = req.body;
 
-    //     characters.push(newcharacter);
+        console.log(newUnfriend);
 
-    //     res.json(newcharacter);
-    // });
+        unfriends.push(newUnfriend);
+
+        res.json(newUnfriend);
+    });
 }
